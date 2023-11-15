@@ -1,11 +1,12 @@
 import React from "react";
 import ProductList from "./ProductList";
+import { testInventory } from "./test-inventory";
 
 class ProductControl extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      mainInventory: [],
+      mainInventory: testInventory,
       formVisible: false,
       editing: false,
       currentItem: null
@@ -17,7 +18,9 @@ class ProductControl extends React.Component {
 
     return (
       <React.Fragment>
-        <ProductList />
+        <ProductList
+          inventory={this.state.mainInventory}
+        />
       </React.Fragment>
     );
   }

@@ -1,4 +1,5 @@
 import React from "react";
+import "./ProductControl.css";
 import ProductList from "./ProductList";
 import { testInventory } from "./test-inventory";
 import NewProductForm from "./NewProductForm";
@@ -46,10 +47,12 @@ class ProductControl extends React.Component {
     }
 
     return (
-      <React.Fragment>
+      <main>
+
         {visibleComponent}
         <button onClick={this.handleClick}>{buttonText}</button>
-      </React.Fragment>
+
+      </main>
     );
   }
 }

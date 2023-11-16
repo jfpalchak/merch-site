@@ -4,7 +4,8 @@ import PropTypes from "prop-types";
 
 function ProductList(props) {
   return (
-    <React.Fragment>
+    <section className="product-list">
+
       {props.inventory.map((item) => 
         <Product
           name={item.name}
@@ -14,8 +15,8 @@ function ProductList(props) {
           id={item.id}
         />
       )}
-      <Product />
-    </React.Fragment>
+      
+    </section>
   );
 }
 

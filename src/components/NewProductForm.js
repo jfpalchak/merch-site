@@ -18,25 +18,26 @@ function NewProductForm(props) {
   }
 
   return (
-    <React.Fragment>
-      <form onSubmit={handleFormSubmission} className="new-product-form">
-        <input 
-          type="text" 
-          name="name" 
-          placeholder="Enter product name." 
-        />
-        <textarea 
-          name="description" 
-          placeholder="Enter product description" 
-        />
-        <input 
-          type="number"
-          name="quantity"
-          placeholder="Enter product quantity."
-        />
-        <button type="submit">Submit</button>
-      </form>
-    </React.Fragment>
+    <form onSubmit={handleFormSubmission} className="new-product-form">
+      <input 
+        type="text" 
+        name="name" 
+        placeholder="Enter product name." 
+      />
+      <br/>
+      <textarea 
+        name="description" 
+        placeholder="Enter product description" 
+      />
+      <br/>
+      <input 
+        type="number"
+        name="quantity"
+        placeholder="Enter product quantity."
+      />
+      <br/>
+      <button type="submit">Submit</button>
+    </form>
   );
 }
 

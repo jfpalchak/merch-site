@@ -32,17 +32,31 @@ class ProductControl extends React.Component {
     });
   }
 
+  // handle clicking on a specific item to render its details
+  // set currentItem state to that product
+  handleProductSelection = (id) => {
+    const selectedItem = this.state.mainInventory.filter(item => item.id === id)[0];
+
+    this.setState({
+      currentItem: selectedItem
+    });
+  }
+
   render() {
     let buttonText = null;
     let visibleComponent = null;
 
-    if (this.state.formVisible) {
+    if (this.state.currentItem != null) {
+      visibleComponent = <ProductDetail 
+                            product={this.state.currentItem}/>
+    } else if (this.state.formVisible) {
       visibleComponent = <NewProductForm
                             onFormSubmission={this.handleAddNewProduct} />
       buttonText = "Cancel";
     } else {
       visibleComponent = <ProductList
-                            inventory={this.state.mainInventory} />    
+                            inventory={this.state.mainInventory} 
+                            onProductClick={this.handleProductSelection}/>    
       buttonText = "Add New Product";
     }
 

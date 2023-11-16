@@ -4,7 +4,7 @@ import { v4 } from "uuid";
 
 function NewProductForm(props) {
 
-  const handleFormSubmission = (event) => {
+  function handleFormSubmission(event) {
     event.preventDefault();
 
     // create new product item and add to list using prop method
@@ -19,14 +19,13 @@ function NewProductForm(props) {
 
   return (
     <React.Fragment>
-      <form className="new-product-form">
+      <form onSubmit={handleFormSubmission} className="new-product-form">
         <input 
           type="text" 
           name="name" 
           placeholder="Enter product name." 
         />
         <textarea 
-          type="text" 
           name="description" 
           placeholder="Enter product description" 
         />
@@ -35,7 +34,7 @@ function NewProductForm(props) {
           name="quantity"
           placeholder="Enter product quantity."
         />
-        <button onClick={handleFormSubmission}>Submit</button>
+        <button type="submit">Submit</button>
       </form>
     </React.Fragment>
   );

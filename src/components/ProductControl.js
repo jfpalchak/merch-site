@@ -23,10 +23,12 @@ class ProductControl extends React.Component {
     }));
   }
 
-  // handle click event to toggle currentItem state
+  // handle click event to toggle currentItem state,
+  // as well as current editing state
   handleDetailButton = () => {
     this.setState({
-      currentItem: null
+      currentItem: null,
+      editing: false
     });
   }
 
@@ -49,13 +51,21 @@ class ProductControl extends React.Component {
     });
   }
 
-  // handle removing the specific item from the inventory
+  // handle removing the specific item from the inventory,
+  // set currentItem to null and return to list
   handleDeleteProduct = (id) => {
     const updatedInventory = this.state.mainInventory.filter(item => item.id !== id);
     this.setState({
       mainInventory: updatedInventory,
       currentItem: null
     })
+  }
+
+  // handle clicking edit button to render edit product form
+  handleEditClick = () => {
+    this.setState({
+      editing: true
+    });
   }
 
   render() {
@@ -66,6 +76,7 @@ class ProductControl extends React.Component {
     if (this.state.currentItem != null) {
       visibleComponent = <ProductDetail 
                             product={this.state.currentItem}
+                            onClickingEdit={this.handleEditClick}
                             onClickingDelete={this.handleDeleteProduct} />
       buttonText = "Return";
       buttonHandler = this.handleDetailButton;

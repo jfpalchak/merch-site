@@ -3,11 +3,11 @@ import PropTypes from "prop-types";
 
 function ProductDetail(props) {
 
-  const { product, onClickingDelete } = props;
+  const { product, onClickingDelete, onClickingEdit } = props;
 
   return (
     <section className="product-detail">
-      
+
       <div className="product-info">
         <h3>{product.name}</h3>
         <h4>{product.description}</h4>
@@ -15,7 +15,7 @@ function ProductDetail(props) {
       </div>
 
       <div className="detail-buttons">
-        <button>Edit Item</button>
+        <button onClick={onClickingEdit}>Edit Item</button>
         <button onClick={() => onClickingDelete(product.id)}>Remove Item</button>
       </div>
 

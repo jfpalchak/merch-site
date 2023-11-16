@@ -8,6 +8,7 @@ function ProductList(props) {
 
       {props.inventory.map((item) => 
         <Product
+          onProductClick={props.onProductClick}
           name={item.name}
           description={item.description}
           quantity={item.quantity}
@@ -15,13 +16,14 @@ function ProductList(props) {
           id={item.id}
         />
       )}
-      
+
     </section>
   );
 }
 
 ProductList.propTypes = {
-  inventory: PropTypes.array
+  inventory: PropTypes.array,
+  onProductClick: PropTypes.func
 };
 
 export default ProductList;

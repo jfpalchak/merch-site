@@ -13,14 +13,29 @@ class ProductControl extends React.Component {
     };
   }
 
+  // handle click event to toggle whether an add item form renders or not
+  handleClick = () => {
+    this.setState(prevState => ({
+      formVisible: !prevState.formVisible
+    }));
+  }
 
   render() {
+    let text = null;
+
+    if (this.state.formVisible) {
+      text = "Form is visible.";
+    } else {
+      text = "Form is not visible.";
+    }
 
     return (
       <React.Fragment>
         <ProductList
           inventory={this.state.mainInventory}
         />
+
+        <button onClick={this.handleClick}>{text}</button>
       </React.Fragment>
     );
   }

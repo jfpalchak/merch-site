@@ -1,6 +1,6 @@
 # Merch Site
 
-#### A simple React application for conditionally rendering multiple different components, and allowing users create, delete, update, and buy/restock listed products.
+#### A simple React application for conditionally rendering multiple different components and implementing full CRUD functionality.
 
 #### By Joey Palchak
 

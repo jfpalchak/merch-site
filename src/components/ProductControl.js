@@ -3,6 +3,7 @@ import "./ProductControl.css";
 import ProductList from "./ProductList";
 import { testInventory } from "./test-inventory";
 import NewProductForm from "./NewProductForm";
+import ProductDetail from "./ProductDetail";
 
 class ProductControl extends React.Component {
   constructor(props){
@@ -49,6 +50,7 @@ class ProductControl extends React.Component {
     if (this.state.currentItem != null) {
       visibleComponent = <ProductDetail 
                             product={this.state.currentItem}/>
+      buttonText = "Return";
     } else if (this.state.formVisible) {
       visibleComponent = <NewProductForm
                             onFormSubmission={this.handleAddNewProduct} />

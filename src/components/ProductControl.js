@@ -44,10 +44,18 @@ class ProductControl extends React.Component {
   // set currentItem state to that product
   handleProductSelection = (id) => {
     const selectedItem = this.state.mainInventory.filter(item => item.id === id)[0];
-
     this.setState({
       currentItem: selectedItem
     });
+  }
+
+  // handle removing the specific item from the inventory
+  handleDeleteProduct = (id) => {
+    const updatedInventory = this.state.mainInventory(item => item.id !== id);
+    this.setState({
+      mainInventory: updatedInventory,
+      currentItem: null
+    })
   }
 
   render() {
@@ -57,7 +65,8 @@ class ProductControl extends React.Component {
 
     if (this.state.currentItem != null) {
       visibleComponent = <ProductDetail 
-                            product={this.state.currentItem}/>
+                            product={this.state.currentItem}
+                            onClickingDelete={this.handleDeleteProduct} />
       buttonText = "Return";
       buttonHandler = this.handleDetailButton;
     } else if (this.state.formVisible) {

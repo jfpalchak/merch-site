@@ -17,10 +17,17 @@ class ProductControl extends React.Component {
   }
 
   // handle click event to toggle whether an add item form renders or not
-  handleClick = () => {
+  handleFormClick = () => {
     this.setState(prevState => ({
       formVisible: !prevState.formVisible
     }));
+  }
+
+  // handle click event to toggle currentItem state
+  handleDetailButton = () => {
+    this.setState({
+      currentItem: null
+    });
   }
 
   // handle submission of new product form and add the new item to the inventory list,
@@ -46,11 +53,13 @@ class ProductControl extends React.Component {
   render() {
     let buttonText = null;
     let visibleComponent = null;
+    let buttonHandler = this.handleFormClick;
 
     if (this.state.currentItem != null) {
       visibleComponent = <ProductDetail 
                             product={this.state.currentItem}/>
       buttonText = "Return";
+      buttonHandler = this.handleDetailButton;
     } else if (this.state.formVisible) {
       visibleComponent = <NewProductForm
                             onFormSubmission={this.handleAddNewProduct} />
@@ -66,7 +75,7 @@ class ProductControl extends React.Component {
       <main>
 
         {visibleComponent}
-        <button onClick={this.handleClick}>{buttonText}</button>
+        <button onClick={buttonHandler}>{buttonText}</button>
 
       </main>
     );

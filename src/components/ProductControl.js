@@ -1,6 +1,7 @@
 import React from "react";
 import ProductList from "./ProductList";
 import { testInventory } from "./test-inventory";
+import NewProductForm from "./NewProductForm";
 
 class ProductControl extends React.Component {
   constructor(props){
@@ -20,22 +21,34 @@ class ProductControl extends React.Component {
     }));
   }
 
+  // handle submission of new product form and add the new item to the inventory list,
+  // then reset formVisible state to go back to the render of our product list
+  handleAddNewProduct = (newProduct) => {
+    const updatedInventory = this.state.mainInventory.concat(newProduct);
+    this.setState({
+      mainInventory: updatedInventory, 
+      formVisible: false
+    });
+  }
+
   render() {
-    let text = null;
+    let buttonText = null;
+    let visibleComponent = null;
 
     if (this.state.formVisible) {
-      text = "Form is visible.";
+      visibleComponent = <NewProductForm
+                            onFormSubmission={this.handleAddNewProduct} />
+      buttonText = "Cancel";
     } else {
-      text = "Form is not visible.";
+      visibleComponent = <ProductList
+                            inventory={this.state.mainInventory} />    
+      buttonText = "Add New Product";
     }
 
     return (
       <React.Fragment>
-        <ProductList
-          inventory={this.state.mainInventory}
-        />
-
-        <button onClick={this.handleClick}>{text}</button>
+        {visibleComponent}
+        <button onClick={this.handleClick}>{buttonText}</button>
       </React.Fragment>
     );
   }

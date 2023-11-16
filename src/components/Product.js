@@ -17,7 +17,7 @@ Product.propTypes = {
   name: PropTypes.string,
   description: PropTypes.string,
   quantity: PropTypes.number,
-  id: PropTypes.number // ! CHANGE THIS TO STRING WHEN IMPLEMENTING UUID !
+  id: PropTypes.string
 };
 
 export default Product;

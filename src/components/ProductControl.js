@@ -51,7 +51,7 @@ class ProductControl extends React.Component {
 
   // handle removing the specific item from the inventory
   handleDeleteProduct = (id) => {
-    const updatedInventory = this.state.mainInventory(item => item.id !== id);
+    const updatedInventory = this.state.mainInventory.filter(item => item.id !== id);
     this.setState({
       mainInventory: updatedInventory,
       currentItem: null

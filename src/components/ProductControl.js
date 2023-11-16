@@ -83,6 +83,42 @@ class ProductControl extends React.Component {
     });
   }
 
+  // handle buying a product & decrementing from quantity
+  handleBuyProduct = () => {
+    const itemQuantity = this.state.currentItem.quantity;
+    const updatedCurrentItem = {
+      ...this.state.currentItem,
+      quantity: (itemQuantity === 0) ? 0 : itemQuantity - 1
+    };
+
+    const updatedInventory = this.state.mainInventory
+      .filter(item => item.id !== this.state.currentItem.id)
+      .concat(updatedCurrentItem);
+
+    this.setState({
+      mainInventory: updatedInventory,
+      currentItem: updatedCurrentItem
+    });
+  }
+
+  // handle restocking a product & incrementing quantity
+  handleRestockProduct = () => {
+    const itemQuantity = this.state.currentItem.quantity;
+    const updatedCurrentItem = {
+      ...this.state.currentItem,
+      quantity: itemQuantity + 1
+    };
+
+    const updatedInventory = this.state.mainInventory
+      .filter(item => item.id !== this.state.currentItem.id)
+      .concat(updatedCurrentItem);
+
+    this.setState({
+      mainInventory: updatedInventory,
+      currentItem: updatedCurrentItem
+    });
+  }
+
   render() {
     let buttonText = null;
     let visibleComponent = null;
@@ -97,6 +133,8 @@ class ProductControl extends React.Component {
     } else if (this.state.currentItem != null) {
       visibleComponent = <ProductDetail 
                             product={this.state.currentItem}
+                            onClickingBuy={this.handleBuyProduct}
+                            onClickingRestock={this.handleRestockProduct}
                             onClickingEdit={this.handleEditClick}
                             onClickingDelete={this.handleDeleteProduct} />
       buttonText = "Return";

@@ -4,6 +4,7 @@ import ProductList from "./ProductList";
 import { testInventory } from "./test-inventory";
 import NewProductForm from "./NewProductForm";
 import ProductDetail from "./ProductDetail";
+import EditProductForm from "./EditProductForm";
 
 class ProductControl extends React.Component {
   constructor(props){
@@ -73,7 +74,11 @@ class ProductControl extends React.Component {
     let visibleComponent = null;
     let buttonHandler = this.handleFormClick;
 
-    if (this.state.currentItem != null) {
+    if (this.state.editing) {
+      visibleComponent = <EditProductForm />
+      buttonText = "Cancel";
+      buttonHandler = this.handleDetailButton;
+    } else if (this.state.currentItem != null) {
       visibleComponent = <ProductDetail 
                             product={this.state.currentItem}
                             onClickingEdit={this.handleEditClick}

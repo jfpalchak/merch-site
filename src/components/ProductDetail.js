@@ -3,13 +3,30 @@ import PropTypes from "prop-types";
 
 function ProductDetail(props) {
 
-  const { product, onClickingDelete, onClickingEdit } = props;
+  const { product, onClickingDelete, onClickingEdit, onQuantityChange } = props;
+
+  function handleBuyingProduct() {
+    const updatedProduct = {
+      ...product,
+      quantity: (product.quantity <= 0) ? 0 : product.quantity - 1
+    };
+    onQuantityChange(updatedProduct);
+  }
+
+  function handleRestockingProduct() {
+    const updatedProduct = {
+      ...product,
+      quantity: product.quantity + 1
+    };
+
+    onQuantityChange(updatedProduct);
+  }
 
   return (
     <section className="product-detail">
 
-      <button onClick={props.onClickingBuy}>Buy Item</button>
-      <button onClick={props.onClickingRestock}>Restock Item</button>
+      <button onClick={handleBuyingProduct}>Buy Item</button>
+      <button onClick={handleRestockingProduct}>Restock Item</button>
 
       <div className="product-info">
         <h3>{product.name}</h3>

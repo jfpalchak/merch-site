@@ -21,5 +21,6 @@ const reducer = (state = {}, action) => {
   }
 };
 
+// with REDUX TOOLKIT
 
 export default reducer;

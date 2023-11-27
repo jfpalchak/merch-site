@@ -1,4 +1,5 @@
-import inventoryReducer from './../../reducers/inventorySlice';
+import inventoryReducer from '../../reducers/inventory-reducer';
+// import { productAdded, productDeleted } from './../../reducers/inventorySlice';
 
 describe('inventoryReducer', () => {
 
@@ -64,4 +65,5 @@ describe('inventoryReducer', () => {
       }
     });
   });
+
 });

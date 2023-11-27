@@ -6,11 +6,14 @@ import NewProductForm from "./NewProductForm";
 import ProductDetail from "./ProductDetail";
 import EditProductForm from "./EditProductForm";
 
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+
 class ProductControl extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      mainInventory: testInventory,
+      // mainInventory: testInventory,
       formVisible: false,
       editing: false,
       currentItem: null
@@ -36,9 +39,19 @@ class ProductControl extends React.Component {
   // handle submission of new product form and add the new item to the inventory list,
   // then reset formVisible state to go back to the render of our product list
   handleAddNewProduct = (newProduct) => {
-    const updatedInventory = this.state.mainInventory.concat(newProduct);
+    const { dispatch } = this.props;
+    const { name, description, quantity, id } = newProduct;
+    const action = {
+      type: 'ADD_PRODUCT',
+      name,
+      description,
+      quantity,
+      id
+    };
+
+    dispatch(action);
+
     this.setState({
-      mainInventory: updatedInventory, 
       formVisible: false
     });
   }
@@ -46,7 +59,7 @@ class ProductControl extends React.Component {
   // handle clicking on a specific item to render its details
   // set currentItem state to that product
   handleProductSelection = (id) => {
-    const selectedItem = this.state.mainInventory.filter(item => item.id === id)[0];
+    const selectedItem = this.props.mainInventory[id];
     this.setState({
       currentItem: selectedItem
     });
@@ -55,9 +68,15 @@ class ProductControl extends React.Component {
   // handle removing the specific item from the inventory,
   // set currentItem to null and return to list
   handleDeleteProduct = (id) => {
-    const updatedInventory = this.state.mainInventory.filter(item => item.id !== id);
+    const { dispatch } = this.props;
+    const action = {
+      type: 'DELETE_PRODUCT',
+      id
+    };
+
+    dispatch(action);
+
     this.setState({
-      mainInventory: updatedInventory,
       currentItem: null
     })
   }
@@ -73,11 +92,19 @@ class ProductControl extends React.Component {
   // then reset currentItem state to null and editing state to false,
   // return to product list
   handleUpdatingProduct = (updatedProduct) => {
-    const updatedInventory = this.state.mainInventory
-      .filter(item => item.id !== this.state.currentItem.id)
-      .concat(updatedProduct);
+    const { dispatch } = this.props;
+    const { name, description, quantity, id } = updatedProduct;
+    const action = {
+      type: 'ADD_PRODUCT',
+      name,
+      description,
+      quantity,
+      id
+    };
+
+    dispatch(action);
+
     this.setState({
-      mainInventory: updatedInventory,
       currentItem: updatedProduct,
       editing: false
     });
@@ -108,7 +135,7 @@ class ProductControl extends React.Component {
       buttonText = "Cancel";
     } else {
       visibleComponent = <ProductList
-                            inventory={this.state.mainInventory} 
+                            inventory={this.props.mainInventory} 
                             onProductClick={this.handleProductSelection}/>    
       buttonText = "Add New Product";
     }
@@ -123,5 +150,17 @@ class ProductControl extends React.Component {
     );
   }
 }
+
+ProductControl.propTypes = {
+  mainInventory: PropTypes.object
+}
+
+const mapStateToProps = (state) => {
+  return {
+    mainInventory: state
+  }
+};
+
+ProductControl = connect(mapStateToProps)(ProductControl);
 
 export default ProductControl;

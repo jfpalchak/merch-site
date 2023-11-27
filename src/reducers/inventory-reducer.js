@@ -1,5 +1,6 @@
+import { testInventory } from "../components/test-inventory";
 
-const reducer = (state = {}, action) => {
+const reducer = (state = testInventory, action) => {
   const { name, description, quantity, id } = action;
 
   switch (action.type) {
@@ -20,7 +21,5 @@ const reducer = (state = {}, action) => {
       return state;
   }
 };
-
-// with REDUX TOOLKIT
 
 export default reducer;

@@ -4,10 +4,20 @@ import './index.css';
 import App from './components/App';
 import reportWebVitals from './reportWebVitals';
 
+import inventoryReducer from './reducers/inventory-reducer';
+import { legacy_createStore as createStore } from 'redux';
+import { Provider } from 'react-redux';
+// import store from './store';
+
+const store = createStore(inventoryReducer);
+
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>
 );
 

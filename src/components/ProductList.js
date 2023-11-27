@@ -6,7 +6,7 @@ function ProductList(props) {
   return (
     <section className="product-list">
 
-      {props.inventory.map((item) => 
+      {Object.values(props.inventory).map((item) => 
         <Product
           onProductClick={props.onProductClick}
           name={item.name}
@@ -22,7 +22,7 @@ function ProductList(props) {
 }
 
 ProductList.propTypes = {
-  inventory: PropTypes.array,
+  inventory: PropTypes.object,
   onProductClick: PropTypes.func
 };
 

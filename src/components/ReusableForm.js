@@ -8,12 +8,12 @@ function ReusableForm(props) {
       <input 
         type="text" 
         name="name" 
-        placeholder="Enter product name." 
+        placeholder="Enter product name."
       />
       <br/>
       <textarea 
         name="description" 
-        placeholder="Enter product description" 
+        placeholder="Enter product description"
       />
       <br/>
       <input 

@@ -21,6 +21,7 @@ function EditProductForm(props) {
     <ReusableForm 
       formSubmissionHandler={handleFormSubmission}
       buttonText="Update"
+      product={product}
     />
   );
 }

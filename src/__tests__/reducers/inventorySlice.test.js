@@ -1,5 +1,6 @@
 import inventoryReducer from '../../reducers/inventory-reducer';
 // import { productAdded, productDeleted } from './../../reducers/inventorySlice';
+import * as c from './../../actions/ActionTypes';
 
 describe('inventoryReducer', () => {
 
@@ -32,7 +33,7 @@ describe('inventoryReducer', () => {
   test('Should successfully ADD a product to inventory state', () => {
     const { name, description, quantity, id } = testProduct;
     action = {
-      type: 'ADD_PRODUCT',
+      type: c.ADD_PRODUCT,
       name: name,
       description: description,
       quantity: quantity,
@@ -52,7 +53,7 @@ describe('inventoryReducer', () => {
   test('Should successfully DELETE a product from inventory state', () => {
     const { id } = testProduct;
     action = {
-      type: 'DELETE_PRODUCT',
+      type: c.DELETE_PRODUCT,
       id: id
     };
 

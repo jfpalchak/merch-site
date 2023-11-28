@@ -8,6 +8,7 @@ import EditProductForm from "./EditProductForm";
 
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import * as a from './../actions/index';
 
 class ProductControl extends React.Component {
   constructor(props){
@@ -40,14 +41,7 @@ class ProductControl extends React.Component {
   // then reset formVisible state to go back to the render of our product list
   handleAddNewProduct = (newProduct) => {
     const { dispatch } = this.props;
-    const { name, description, quantity, id } = newProduct;
-    const action = {
-      type: 'ADD_PRODUCT',
-      name,
-      description,
-      quantity,
-      id
-    };
+    const action = a.addProduct(newProduct);
 
     dispatch(action);
 
@@ -69,10 +63,7 @@ class ProductControl extends React.Component {
   // set currentItem to null and return to list
   handleDeleteProduct = (id) => {
     const { dispatch } = this.props;
-    const action = {
-      type: 'DELETE_PRODUCT',
-      id
-    };
+    const action = a.deleteProduct(id);
 
     dispatch(action);
 
@@ -93,14 +84,7 @@ class ProductControl extends React.Component {
   // return to product list
   handleUpdatingProduct = (updatedProduct) => {
     const { dispatch } = this.props;
-    const { name, description, quantity, id } = updatedProduct;
-    const action = {
-      type: 'ADD_PRODUCT',
-      name,
-      description,
-      quantity,
-      id
-    };
+    const action = a.addProduct(updatedProduct);
 
     dispatch(action);
 

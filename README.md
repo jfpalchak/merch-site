@@ -13,6 +13,8 @@
 
 ## Description
 
+This branch of the Merch Site project implements legacy Redux, and creates a store for the inventory.
+
 Merch Site is a simple React application intended only for practice & learning purposes. The application conditionally renders a number of different components: a list of products, a form to create a product, or a form to update or delete an existing product, as well as allow a user to buy or restock a specific product, which updates that products quantity count. 
 
 A product's quantity can only go as low as 0, at which point the product is listed as "Out of Stock".
